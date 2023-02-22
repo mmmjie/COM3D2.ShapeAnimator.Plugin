@@ -11,9 +11,9 @@ https://github.com/customordermaid3d2/COM3D2.ShapeAnimator made a fork form that
 
 This repository is for personal purposes, I added some custom modifications.
 
-If you alse want, then go 'Actions' to download.
+If you alse want it, just go 'Actions' to download.
 
 # Plguin Info
-This is Sybaris/UnityInjector plugin for COM3D2.
+This is a Sybaris/UnityInjector plugin for COM3D2.
 
 install to `COM3D2\Sybaris\UnityInjector\`
