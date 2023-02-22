@@ -24,11 +24,11 @@ namespace COM3D2.ShapeAnimator
     PluginFilter("COM3D2OHx64"),
     PluginFilter("COM3D2OHVRx64"),
     PluginName("ShapeAnimator By Lilly"),
-    PluginVersion("0.3.8.3")]
+    PluginVersion("0.3.8.4")]
     public class ShapeAnimator : PluginBase
     {
-        private readonly static string PLUGIN_NAME = "ShapeAnimator By Lilly";
-        private readonly static string PLUGIN_VERSION = "0.3.8.3";
+        private readonly static string PLUGIN_NAME = "ShapeAnimator By Lilly-Inory";
+        private readonly static string PLUGIN_VERSION = "0.3.8.4";
         private readonly static int WINDOW_ID = 190;
 
 /*
