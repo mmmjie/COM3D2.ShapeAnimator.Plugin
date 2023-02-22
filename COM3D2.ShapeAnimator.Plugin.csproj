@@ -32,39 +32,39 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>F:\COM3D2\COM3D2x64_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>\home\runner\work\COM3D2.ShapeAnimator.Plugin\COM3D2.ShapeAnimator.Plugin\lib\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>F:\COM3D2\COM3D2x64_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+      <HintPath>\home\runner\work\COM3D2.ShapeAnimator.Plugin\COM3D2.ShapeAnimator.Plugin\lib\Assembly-CSharp-firstpass.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ExIni">
-      <HintPath>F:\COM3D2\COM3D2x64_Data\Managed\ExIni.dll</HintPath>
+      <HintPath>\home\runner\work\COM3D2.ShapeAnimator.Plugin\COM3D2.ShapeAnimator.Plugin\lib\ExIni.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System">
-      <HintPath>F:\COM3D2\COM3D2x64_Data\Managed\System.dll</HintPath>
+      <HintPath>\home\runner\work\COM3D2.ShapeAnimator.Plugin\COM3D2.ShapeAnimator.Plugin\lib\System.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Configuration">
-      <HintPath>F:\COM3D2\COM3D2x64_Data\Managed\System.Configuration.dll</HintPath>
+      <HintPath>\home\runner\work\COM3D2.ShapeAnimator.Plugin\COM3D2.ShapeAnimator.Plugin\lib\System.Configuration.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Xml">
-      <HintPath>F:\COM3D2\COM3D2x64_Data\Managed\System.Xml.dll</HintPath>
+      <HintPath>\home\runner\work\COM3D2.ShapeAnimator.Plugin\COM3D2.ShapeAnimator.Plugin\lib\System.Xml.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Xml.Linq">
-      <HintPath>F:\COM3D2\COM3D2x64_Data\Managed\System.Xml.Linq.dll</HintPath>
+      <HintPath>\home\runner\work\COM3D2.ShapeAnimator.Plugin\COM3D2.ShapeAnimator.Plugin\lib\System.Xml.Linq.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>F:\COM3D2\COM3D2x64_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>\home\runner\work\COM3D2.ShapeAnimator.Plugin\COM3D2.ShapeAnimator.Plugin\lib\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityInjector">
-      <HintPath>..\..\..\com3d2\_plugin\cm3d2_j_154\Sybaris\UnityInjector.dll</HintPath>
+      <HintPath>\home\runner\work\COM3D2.ShapeAnimator.Plugin\COM3D2.ShapeAnimator.Plugin\lib\UnityInjector.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
