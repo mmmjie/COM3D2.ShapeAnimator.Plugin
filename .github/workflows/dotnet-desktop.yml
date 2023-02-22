@@ -29,4 +29,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: COM3D2.ShapeAnimator.Plugin
-          path: COM3D2.ShapeAnimator.Plugin/bin/Release/COM3D2.ShapeAnimator.Plugin.dll
+          path: /home/runner/work/COM3D2.ShapeAnimator.Plugin/COM3D2.ShapeAnimator.Plugin/bin/Release/COM3D2.ShapeAnimator.Plugin.dll
