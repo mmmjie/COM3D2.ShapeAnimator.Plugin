@@ -1,6 +1,6 @@
 # COM3D2.ShapeAnimator.Plugin
 
-This plugin is made by twitter [@galleBlizzg](https://twitter.com/galleBlizzg) (not sure), release at https://twitter.com/galleBlizzg/status/1598317772815347712, Which include source code but no license included, and you can find original description there.
+This plugin is made by "unkonw", release at https://ux.getuploader.com/com3d2_mod_kyouyu/download/220, Which include source code but no license included, and you can find original description there.
 
 https://github.com/customordermaid3d2/COM3D2.ShapeAnimator made a fork form that (not sure), this is fork's fork, so if there is infringement, it will not be my responsibility.
 
