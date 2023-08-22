@@ -1,4 +1,4 @@
-﻿//コンパイル
+//コンパイル
 //C:\Windows\Microsoft.NET\Framework\v3.5\csc /t:library /lib:..\CM3D2x64_Data\Managed /r:UnityEngine.dll /r:UnityInjector.dll /r:Assembly-CSharp.dll CM3D2.ShapeAnimator.Plugin.cs
 //
 //シバリスのUnityInjectorフォルダ内でのコンパイル
@@ -19,117 +19,117 @@ using UnityEngine.SceneManagement;
 namespace COM3D2.ShapeAnimator
 {
     [
-	PluginFilter("COM3D2x64"),
+    PluginFilter("COM3D2x64"),
     PluginFilter("COM3D2VRx64"),
     PluginFilter("COM3D2OHx64"),
     PluginFilter("COM3D2OHVRx64"),
     PluginName("ShapeAnimator By Lilly&Inory"),
-    PluginVersion("0.3.8.4")]
+    PluginVersion("0.3.8.5")]
     public class ShapeAnimator : PluginBase
     {
         private readonly static string PLUGIN_NAME = "ShapeAnimator By Lilly&Inory";
-        private readonly static string PLUGIN_VERSION = "0.3.8.4";
+        private readonly static string PLUGIN_VERSION = "0.3.8.5";
         private readonly static int WINDOW_ID = 190;
 
-/*
+        /*
 
-SceneLevel
+        SceneLevel
 
-Events						OM3D2	CBL
-	エディット					5		4
-	夜伽						14		10
-	男エディット				12		8
-	イベント一般				15		11
-	回想モード					24		(未実装)
-	スタジオモード				26		20
-執務室(複数メイドプラグイン用)	3		3
+        Events						OM3D2	CBL
+            エディット					5		4
+            夜伽						14		10
+            男エディット				12		8
+            イベント一般				15		11
+            回想モード					24		(未実装)
+            スタジオモード				26		20
+        執務室(複数メイドプラグイン用)	3		3
 
-かしずきモード					53
-スカウトモード					114
-互換夜伽						63
+        かしずきモード					53
+        スカウトモード					114
+        互換夜伽						63
 
 
-Dance								COM3D2		CBL
-●COM3D2
-	Night Magic Fire				37,45		29,34
-	Night Magic Fire-ENG.			90,91		69,70
-	Blooming Dreaming				38,43		30,32
-	キミに愛情でりぃしゃす			39,44		31,33
-	Luminus Moment					50,62		42,43
-	Melody of Empire				58,55,61	38,35,41
-	ドキドキ☆Fallin'Love			4,59		3,39
-	entrance to you					20,64		16,44
-	rhythmix to you					27,60		21,40
-	scarlet leap					22,56		18,36
+        Dance								COM3D2		CBL
+        ●COM3D2
+            Night Magic Fire				37,45		29,34
+            Night Magic Fire-ENG.			90,91		69,70
+            Blooming Dreaming				38,43		30,32
+            キミに愛情でりぃしゃす			39,44		31,33
+            Luminus Moment					50,62		42,43
+            Melody of Empire				58,55,61	38,35,41
+            ドキドキ☆Fallin'Love			4,59		3,39
+            entrance to you					20,64		16,44
+            rhythmix to you					27,60		21,40
+            scarlet leap					22,56		18,36
 
-●+GP01
-	secret deep blue				82,83		61,62
-	fusionic addition				84			63
+        ●+GP01
+            secret deep blue				82,83		61,62
+            fusionic addition				84			63
 
-●+GP02
-	COM3D2とCOM3D2CBLのGameDataフォルダを共有化していると、CBLでも再生可能だったりします。
-	remember to dearest				96,98		(未実装　75，77)
-	DAN! GAN! PARTY!!				101,102		(未実装　80，81)
-	love more cry more				99			(未実装　78)
+        ●+GP02
+            COM3D2とCOM3D2CBLのGameDataフォルダを共有化していると、CBLでも再生可能だったりします。
+            remember to dearest				96,98		(未実装　75，77)
+            DAN! GAN! PARTY!!				101,102		(未実装　80，81)
+            love more cry more				99			(未実装　78)
 
-●+GP01Fb
-	speed up mind					118,119		97,98
+        ●+GP01Fb
+            speed up mind					118,119		97,98
 
-●DLC
-	さくらうららか　はらひらり		71,72		51,52
-	maiinly priority				76,77		56,57
-	レグルスの涙					107,108		86,87
-	can know two close?				29,57		22,37
-	1st only you					86,87		65,66
-	革命的ハートグラフィー			122,121		101,100
+        ●DLC
+            さくらうららか　はらひらり		71,72		51,52
+            maiinly priority				76,77		56,57
+            レグルスの涙					107,108		86,87
+            can know two close?				29,57		22,37
+            1st only you					86,87		65,66
+            革命的ハートグラフィー			122,121		101,100
 
-	candy girl						88,89		67,68
-	タイヨウパラダイス				92,93		71,72
-	恋しちゃったみたい				100			79
-	kiss me choose me				120			99
+            candy girl						88,89		67,68
+            タイヨウパラダイス				92,93		71,72
+            恋しちゃったみたい				100			79
+            kiss me choose me				120			99
 
-●CM3D2 Act.1～3
-	stellar my tears				103,104		82,83
-	happy! happy! スキャンダル!!	106,105		85,84
-	Sweet Sweet Everyday			109,110		88,89
+        ●CM3D2 Act.1～3
+            stellar my tears				103,104		82,83
+            happy! happy! スキャンダル!!	106,105		85,84
+            Sweet Sweet Everyday			109,110		88,89
 
-●未実装
-	Selfish Destiny					123,124		102,103
-	SUN!　シャイン!　夏
+        ●未実装
+            Selfish Destiny					123,124		102,103
+            SUN!　シャイン!　夏
 
-*/
+        */
 
-/*
+        /*
+                private readonly static int[] EnableSceneLevel = new int[]
+                 {   5, 14, 12, 15, 24, 26,  3, 18, 53,114,
+        // 상단 이벤트, 하단 댄스 용.
+                    37, 45, 90, 91, 38, 43, 39, 44, 50, 62, 58, 55, 61,  4, 59, 20,
+                    64, 27, 60, 22, 56, 82, 83, 84, 96, 98,101,102, 99,118,119, 29,
+                    57, 86, 87, 88, 89, 92, 93,100,120,103,104,106,105,109,110,122,
+                   121, 71, 72, 76, 77,107,108,124,124
+                };
+        */
         private readonly static int[] EnableSceneLevel = new int[]
-         {   5, 14, 12, 15, 24, 26,  3, 18, 53,114,
-// 상단 이벤트, 하단 댄스 용.
-            37, 45, 90, 91, 38, 43, 39, 44, 50, 62, 58, 55, 61,  4, 59, 20,
-    	    64, 27, 60, 22, 56, 82, 83, 84, 96, 98,101,102, 99,118,119, 29,
-       	    57, 86, 87, 88, 89, 92, 93,100,120,103,104,106,105,109,110,122,
-      	   121, 71, 72, 76, 77,107,108,124,124
-        };
-*/
-		        private readonly static int[] EnableSceneLevel = new int[]
-         {   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
-		 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
-		 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46,
-		 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61,
-		 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76,
-		 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91,
-		 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105,
-		 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117,
-		 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129,
-		 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141,
-		 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153,
-		 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165,
-		 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177,
-		 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189,
-		 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200
+ {   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
+         17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
+         32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46,
+         47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61,
+         62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76,
+         77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91,
+         92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105,
+         106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117,
+         118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129,
+         130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141,
+         142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153,
+         154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165,
+         166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177,
+         178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189,
+         190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200
 
-        };
-		
-		
-		
+};
+
+
+
         private readonly static int[] EnableSceneLevelCBL = new int[]
          {   4, 10,  8, 11, 20, 28,
             29, 34, 70, 69, 30, 32, 31, 33, 42, 43, 38, 35, 41,  3, 39, 16,
@@ -142,7 +142,7 @@ Dance								COM3D2		CBL
         private bool isDance = false;
         private bool isDanceInit = false;
 
-//        private CameraMain cameraMain;
+        //        private CameraMain cameraMain;
 
         private XMLManager xml;
         private List<DataManager> dm;
@@ -178,7 +178,7 @@ Dance								COM3D2		CBL
         private string sMessageLabel = string.Empty;
         //private bool bGuiOnMouse = true;
 
-        private enum eFillter {ALL, NORM, ID, NAME, BANPEI};
+        private enum eFillter { ALL, NORM, ID, NAME, BANPEI };
         private int iFillterNo = (int)eFillter.ALL;
         private int imaidFillterAssign = 0;
 
@@ -553,27 +553,29 @@ Dance								COM3D2		CBL
             iActivePopUp = -1;
             iReturnPopUp = -1;
             iMessageLabelTimer = -1;
-            isDance = FindObjectOfType(typeof(DanceMain)) != null ? true : false ;
+            isDance = FindObjectOfType(typeof(DanceMain)) != null ? true : false;
             isDanceInit = false;
 
-            if (!isDance){
+            if (!isDance)
+            {
                 // カラオケモードのキャラクター選択画面もダンス扱いしてみる
                 // もしかしたら他のキャラクター選択画面も同じかもしれんがまあ悪さはしないやら
-                if (scene.name == "SceneCharacterSelect"){
+                if (scene.name == "SceneCharacterSelect")
+                {
                     isDance = true;
                 }
             }
 
-//            UnityEngine.Debug.LogError("scene.name = " + scene.name + ", sceneMode = " + sceneMode;
-//            UnityEngine.Debug.LogError(" isDance : " + isDance);
-//            UnityEngine.Debug.LogError(" DanceMain.KaraokeMode : " + DanceMain.KaraokeMode);
+            //            UnityEngine.Debug.LogError("scene.name = " + scene.name + ", sceneMode = " + sceneMode;
+            //            UnityEngine.Debug.LogError(" isDance : " + isDance);
+            //            UnityEngine.Debug.LogError(" DanceMain.KaraokeMode : " + DanceMain.KaraokeMode);
 
             mm.Clear();
 
             //有効にするシーンレベルを追加する場合は
             //「EnableSceneLevel」配列に数値を追加する
             if ((!isChubLip && EnableSceneLevel.Contains(level)) || (isChubLip && EnableSceneLevelCBL.Contains(level))
-                || isDance )
+                || isDance)
             //    if (EnableSceneLevel.Contains(level))
             {
                 LoadXML();
@@ -639,7 +641,7 @@ Dance								COM3D2		CBL
                         bGuiPopUp = false;
                 }
 
-                
+
 
                 //if (rectWin.Contains(new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y)))
                 //{
@@ -775,19 +777,25 @@ Dance								COM3D2		CBL
             v2ScrollPos = GUI.BeginScrollView(rectScrollView, v2ScrollPos, rectScroll);
             for (int i = 0; i < dm.Count; i++)
             {
-                if (iFillterNo != (int)eFillter.ALL) {
-                    if (dm[i].maidGuid != string.Empty) {
+                if (iFillterNo != (int)eFillter.ALL)
+                {
+                    if (dm[i].maidGuid != string.Empty)
+                    {
                         if (iFillterNo != (int)eFillter.ID) continue;
                     }
-                    else if (dm[i].maidFixedAssign >= 0) {
-                        if (iFillterNo != (int)eFillter.NAME){
+                    else if (dm[i].maidFixedAssign >= 0)
+                    {
+                        if (iFillterNo != (int)eFillter.NAME)
+                        {
                             continue;
                         }
-                        else {
+                        else
+                        {
                             if (dm[i].maidFixedAssign != imaidFillterAssign) continue;
                         }
                     }
-                    else {
+                    else
+                    {
                         if (iFillterNo != (int)eFillter.NORM) continue;
                     }
                 }
@@ -878,7 +886,7 @@ Dance								COM3D2		CBL
                                 Debug.Log("모든캐릭 적용:" + dm[i].tag);
                                 break;
                             case DataManager.ModType.All:
-                                //break;
+                            //break;
                             default:
                                 dm[i].mod = DataManager.ModType.none;
                                 Debug.Log("일반 적용:" + dm[i].tag);
@@ -891,7 +899,7 @@ Dance								COM3D2		CBL
                     switch (dm[i].mod)
                     {
                         case DataManager.ModType.All:
-                            GUI.Label(rectItem,"모든캐릭", gsLabel);
+                            GUI.Label(rectItem, "모든캐릭", gsLabel);
                             break;
                         case DataManager.ModType.none:
                         //break;
@@ -915,7 +923,7 @@ Dance								COM3D2		CBL
                         OnClickMaidAssignButton(i);
                     }
 
-                    if(gm.IsSkipAnimate(i))
+                    if (gm.IsSkipAnimate(i))
                     {
                         rectItem.Set(rectScrollInner.x, rectItem.y + rectItem.height + fMargin, fFontSize * 4, fItemHeight);
                         dm[i].groupReverse = GUI.Toggle(rectItem, dm[i].groupReverse, "반전", gsToggle);
@@ -1215,17 +1223,18 @@ Dance								COM3D2		CBL
 
             rectItem.Set(rectInner.x, rectItem.y + rectItem.height, fFontSize * 6, fItemHeight);
             string sFillterName;
-            if(iFillterNo == (int)eFillter.ALL) sFillterName = "全部表示";
-            else if(iFillterNo == (int)eFillter.NORM) sFillterName = "通常表示";
-            else if(iFillterNo == (int)eFillter.ID) sFillterName = " ID表示 ";
+            if (iFillterNo == (int)eFillter.ALL) sFillterName = "全部表示";
+            else if (iFillterNo == (int)eFillter.NORM) sFillterName = "通常表示";
+            else if (iFillterNo == (int)eFillter.ID) sFillterName = " ID表示 ";
             else /* if(iFillterNo == (int)eFillter.NAME) */ sFillterName = "名前表示";
             if (GUI.Button(rectItem, sFillterName, gsButton))
             {
                 iFillterNo++;
-                if(iFillterNo == (int)eFillter.BANPEI) iFillterNo = (int)eFillter.ALL;
+                if (iFillterNo == (int)eFillter.BANPEI) iFillterNo = (int)eFillter.ALL;
             }
-            if(iFillterNo == (int)eFillter.NAME){
-                rectItem.Set(rectInner.x +  fFontSize * 6 , rectItem.y , fFontSize * 2, fItemHeight);
+            if (iFillterNo == (int)eFillter.NAME)
+            {
+                rectItem.Set(rectInner.x + fFontSize * 6, rectItem.y, fFontSize * 2, fItemHeight);
                 if (GUI.Button(rectItem, "<", gsButton))
                 {
                     if (--imaidFillterAssign < 0)
@@ -1319,7 +1328,7 @@ Dance								COM3D2		CBL
 
             if (bFade)
             {
-                if(!GameMain.Instance.MainCamera.IsFadeProc())
+                if (!GameMain.Instance.MainCamera.IsFadeProc())
                 {
                     bFade = false;
                     mm.bUpdate = true;
@@ -1347,10 +1356,10 @@ Dance								COM3D2		CBL
                 }
             }
 
-            if(isDance && !isDanceInit)
+            if (isDance && !isDanceInit)
             {
                 Maid maid0 = GameMain.Instance.CharacterMgr.GetMaid(0);
-                if(maid0 == null || maid0.IsBusy) return;
+                if (maid0 == null || maid0.IsBusy) return;
                 isDanceInit = true;
                 LoadXML();
                 mm.bUpdate = true;
@@ -1613,10 +1622,40 @@ Dance								COM3D2		CBL
 
             for (int i = 0; i < dm.Count; i++)
             {
-                //if (dm[i].mod == DataManager.ModType.none)
-                //{
+                // 如果是所有角色模式
+                if (dm[i].mod == DataManager.ModType.All)
+                {
+                    // 遍历所有角色
+                    for (int j = 0; j < mm.listMaid.Count; j++)
+                    {
+
+                        Maid maid = mm.listMaid[j];
+
+                        // 应用或关闭效果
+                        if (!dm[i].enable)
+                        {
+                            if (iDisable == i)
+                            {
+                                VertexMorph_FromProcItem(maid.body0, dm[i].tag, 0f);
+                            }
+                        }
+                        else
+                        {
+                            b[j] = VertexMorph_FromProcItem(maid.body0, dm[i].tag, dm[i].val);
+                        }
+
+                        bFace[j] = b[j] ? b[j] : bFace[j];
+
+                    }
+
+                }
+                //如果不是所有角色模式
+                else
+                {
+                    //if (dm[i].mod == DataManager.ModType.none)
+                    //{
                     if (dm[i].maid < 0)
-                    continue;
+                        continue;
 
                     if (!dm[i].enable)
                     {
@@ -1626,249 +1665,102 @@ Dance								COM3D2		CBL
                     }
                     b[dm[i].maid] = VertexMorph_FromProcItem(mm.listMaid[dm[i].maid].body0, dm[i].tag, dm[i].val);
                     bFace[dm[i].maid] = b[dm[i].maid] ? b[dm[i].maid] : bFace[dm[i].maid];
-                //}
-                //else
+                    //}
+                    //else
+                    //{
+                    //    for (int j = 0; j < bFace.Length; j++)
+                    //    {
+                    //        if (!dm[i].enable)
+                    //        {
+                    //            if (iDisable == i)
+                    //                VertexMorph_FromProcItem(mm.listMaid[j].body0, dm[i].tag, 0f);
+                    //            continue;
+                    //        }
+                    //        b[j] = VertexMorph_FromProcItem(mm.listMaid[j].body0, dm[i].tag, dm[i].val);
+                    //        bFace[j] = b[j] ? b[j] : bFace[j];
+                    //    }
+                    //}
+
+                }
+
+                // 이거 제거하는게 나을듯 한데
+                for (int i = 0; i < bFace.Length; i++)
+                {
+                    if (bFace[i] == mm.listMaid[i].boMabataki)
+                    {
+                        mm.listMaid[i].boMabataki = !bFace[i];
+                        if (bFace[i])
+                        {
+                            mm.listMaid[i].body0.Face.morph.EyeMabataki = 0f; //  윙크
+                        }
+                    }
+                }
+
+                //for (int i = 0; i < dm.Count; i++)
                 //{
-                //    for (int j = 0; j < bFace.Length; j++)
+                //    if (dm[i].enable)
                 //    {
-                //        if (!dm[i].enable)
+                //        b[dm[i].maid] = VertexMorph_FromProcItem(mm.listMaid[dm[i].maid].body0, dm[i].tag, dm[i].val);
+                //        //if (iChangeMaid >= 0)
+                //        //{
+                //        //    if (mm.listMaid.Count > iChangeMaid)
+                //        //        VertexMorph_FromProcItem(mm.listMaid[iChangeMaid].body0, dm[i].tag, 0f, true);
+                //        //}
+                //        //b[dm[i].maid] = VertexMorph_FromProcItem(mm.listMaid[dm[i].maid].body0, dm[i].tag, dm[i].val, true);
+                //    }
+                //    else if (i == iDisable)
+                //    {
+                //        VertexMorph_FromProcItem(mm.listMaid[dm[i].maid].body0, dm[i].tag, dm[i].val);
+                //        b[dm[i].maid] = false;
+                //    }
+                //    bFace[dm[i].maid] = b[dm[i].maid] ? b[dm[i].maid] : bFace[dm[i].maid];
+                //}
+
+                //for (int i = 0; i < bFace.Length; i++)
+                //{
+                //    if (bFace[i] == mm.listMaid[i].boMabataki)
+                //    {
+                //        mm.listMaid[i].boMabataki = !bFace[i];
+                //        if (bFace[i])
                 //        {
-                //            if (iDisable == i)
-                //                VertexMorph_FromProcItem(mm.listMaid[j].body0, dm[i].tag, 0f);
-                //            continue;
+                //            //  윙크
+                //            mm.listMaid[i].body0.Face.morph.EyeMabataki = 0f;
+                //            // 目閉じ対策？　とりあえず保留 눈 닫 대책? 일단 보류
+                //            //                        mm.listMaid[i].body0.Face.morph.BlendValues[(int)mm.listMaid[i].body0.Face.morph.hash["eyeclose"]] = 0f;
                 //        }
-                //        b[j] = VertexMorph_FromProcItem(mm.listMaid[j].body0, dm[i].tag, dm[i].val);
-                //        bFace[j] = b[j] ? b[j] : bFace[j];
                 //    }
                 //}
-
             }
 
-            // 이거 제거하는게 나을듯 한데
-            for (int i = 0; i < bFace.Length; i++)
+            private void OnMMUpdate()
             {
-                if (bFace[i] == mm.listMaid[i].boMabataki)
+                int iMaidCount = mm.listMaid.Count;
+                for (int i = 0; i < dm.Count; i++)
                 {
-                    mm.listMaid[i].boMabataki = !bFace[i];
-                    if (bFace[i])
-                    {                        
-                        mm.listMaid[i].body0.Face.morph.EyeMabataki = 0f; //  윙크
-                    }
+                    if (dm[i].maidSel >= iMaidCount)
+                        dm[i].maidSel = 0;
+                    ResetMaidAssign(i);
                 }
             }
 
-            //for (int i = 0; i < dm.Count; i++)
-            //{
-            //    if (dm[i].enable)
-            //    {
-            //        b[dm[i].maid] = VertexMorph_FromProcItem(mm.listMaid[dm[i].maid].body0, dm[i].tag, dm[i].val);
-            //        //if (iChangeMaid >= 0)
-            //        //{
-            //        //    if (mm.listMaid.Count > iChangeMaid)
-            //        //        VertexMorph_FromProcItem(mm.listMaid[iChangeMaid].body0, dm[i].tag, 0f, true);
-            //        //}
-            //        //b[dm[i].maid] = VertexMorph_FromProcItem(mm.listMaid[dm[i].maid].body0, dm[i].tag, dm[i].val, true);
-            //    }
-            //    else if (i == iDisable)
-            //    {
-            //        VertexMorph_FromProcItem(mm.listMaid[dm[i].maid].body0, dm[i].tag, dm[i].val);
-            //        b[dm[i].maid] = false;
-            //    }
-            //    bFace[dm[i].maid] = b[dm[i].maid] ? b[dm[i].maid] : bFace[dm[i].maid];
-            //}
-
-            //for (int i = 0; i < bFace.Length; i++)
-            //{
-            //    if (bFace[i] == mm.listMaid[i].boMabataki)
-            //    {
-            //        mm.listMaid[i].boMabataki = !bFace[i];
-            //        if (bFace[i])
-            //        {
-            //            //  윙크
-            //            mm.listMaid[i].body0.Face.morph.EyeMabataki = 0f;
-            //            // 目閉じ対策？　とりあえず保留 눈 닫 대책? 일단 보류
-            //            //                        mm.listMaid[i].body0.Face.morph.BlendValues[(int)mm.listMaid[i].body0.Face.morph.hash["eyeclose"]] = 0f;
-            //        }
-            //    }
-            //}
-        }
-
-        private void OnMMUpdate()
-        {
-            int iMaidCount = mm.listMaid.Count;
-            for (int i = 0; i < dm.Count; i++)
+            private void ResetMaidAssign(int i)
             {
-                if (dm[i].maidSel >= iMaidCount)
-                    dm[i].maidSel = 0;
-                ResetMaidAssign(i);
-            }
-        }
-
-        private void ResetMaidAssign(int i)
-        {
-            if (dm[i].maidGuid != string.Empty)
-            {
-                for (int n = 0; n < mm.listName.Count; n++)
-                {
-//                    if (mm.listMaid[n].Param.status.guid == dm[i].maidGuid)
-                    if (mm.listMaid[n].status.guid == dm[i].maidGuid)                    {
-                        dm[i].maid = n;
-                        dm[i].maidFixedAssign = n;
-                        dm[i].maidNameByGuid = mm.listName[n];
-                        return;
-                    }
-                }
-                dm[i].maid = -1;
-                dm[i].maidFixedAssign = -1;
-                return;
-            }
-
-            Match match = regexNameAssign.Match(dm[i].name);
-            if (match.Success)
-            {
-                string sMatch = match.Value.Replace("*", string.Empty);
-                for (int n = 0; n < mm.listMaid.Count; n++)
-                {
-                    string sTmp = mm.listName[n].Replace(" ", string.Empty);
-                    if (sTmp == sMatch)
-                    {
-                        dm[i].maid = n;
-                        dm[i].maidFixedAssign = n;
-                        return;
-                    }
-                }
-                dm[i].maid = -1;
-                dm[i].maidFixedAssign = -1;
-                return;
-            }
-            dm[i].maid = dm[i].maidSel;
-            dm[i].maidFixedAssign = -1;
-        }
-
-        private void OnNameFieldChange(int i)
-        {
-            Match match = regexNameAssign.Match(dm[i].name);
-            if (match.Success)
-            {
-                string sMatch = match.Value.Replace("*", string.Empty);
-                for (int n = 0; n < mm.listName.Count; n++)
-                {
-                    string sTmp = mm.listName[n].Replace(" ", string.Empty);
-                    if (sTmp == sMatch)
-                    {
-                        dm[i].maidFixedAssign = n;
-                        dm[i].maid = n;
-                        dm[i].maidGuid = string.Empty;
-                        dm[i].maidNameByGuid = string.Empty;
-                        return;
-                    }
-                }
-                dm[i].maidFixedAssign = -1;
-                dm[i].maid = -1;
-                return;
-            }
-            dm[i].maidFixedAssign = -1;
-            dm[i].maid = dm[i].maidSel;
-        }
-
-        private void OnClickMaidAssignButton(int i)
-        {
-            if (dm[i].maidGuid != string.Empty)
-            {
-                dm[i].maidGuid = string.Empty;
-                dm[i].maidNameByGuid = string.Empty;
-                dm[i].maidFixedAssign = -1;
-                dm[i].maid = dm[i].maidSel;
-                return;
-            }
-
-            if (dm[i].maidFixedAssign >= 0)
-            {
-                SetNameFieldMaidAssign(i, false);
-//                dm[i].maidGuid = mm.listMaid[dm[i].maidSel].Param.status.guid;
-                dm[i].maidGuid = mm.listMaid[dm[i].maidSel].status.guid;
-                dm[i].maidNameByGuid = mm.listName[dm[i].maidSel];
-                dm[i].maidFixedAssign = dm[i].maidSel;
-                dm[i].maid = dm[i].maidSel;
-                return;
-            }
-
-            SetNameFieldMaidAssign(i, true);
-            dm[i].maidGuid = string.Empty;
-            dm[i].maidNameByGuid = string.Empty;
-            dm[i].maidFixedAssign = dm[i].maidSel;
-            dm[i].maid = dm[i].maidSel;
-        }
-
-        private void SetNameFieldMaidAssign(int i, bool b)
-        {
-            Match match = regexNameAssign.Match(dm[i].name);
-            if (b)
-            {
-                string sMaidName = mm.listName[dm[i].maidSel];
-                sMaidName = "*" + sMaidName.Replace(" ", string.Empty) + "*";
-
-                if (match.Success)
-                {
-                    dm[i].name = regexNameAssign.Replace(dm[i].name, sMaidName);
-                }
-                else
-                {
-                    dm[i].name = sMaidName + dm[i].name;
-                }
-            }
-            else
-            {
-                if (match.Success)
-                {
-                    dm[i].name = regexNameAssign.Replace(dm[i].name, string.Empty);
-                }
-            }
-        }
-
-        private void MoveDM(int i, bool bUp)
-        {
-            if ((i == 0 && bUp) || i == dm.Count - 1 && !bUp)
-                return;
-
-            int iTarget = bUp ? i - 1 : i + 1;
-
-            DataManager dmTmp = (DataManager)dm[iTarget].Clone();
-            dm[iTarget] = (DataManager)dm[i].Clone();
-            dm[i] = dmTmp;
-        }
-
-        //
-
-        private void OnLoad()
-        {
-            List<HashSet<string>> listEnableTag = new List<HashSet<string>>();
-            for (int i = 0; i < mm.listMaid.Count; i++)
-            {
-                listEnableTag.Add(new HashSet<string>());
-            }
-            bool bHit = false;
-            for (int i = 0; i < dm.Count; i++)
-            {
-                bHit = false;
                 if (dm[i].maidGuid != string.Empty)
                 {
                     for (int n = 0; n < mm.listName.Count; n++)
                     {
-///CM>COM               if (mm.listMaid[n].Param.status.guid == dm[i].maidGuid)
+                        //                    if (mm.listMaid[n].Param.status.guid == dm[i].maidGuid)
                         if (mm.listMaid[n].status.guid == dm[i].maidGuid)
                         {
-                            if (dm[i].enableInSavedata && IsValidKey(mm.listMaid[n].body0, dm[i].tag) && listEnableTag[n].Add(dm[i].tag))
-                            {
-                                dm[i].enable = true;
-                                bHit = true;
-                                break;
-                            }
+                            dm[i].maid = n;
+                            dm[i].maidFixedAssign = n;
+                            dm[i].maidNameByGuid = mm.listName[n];
+                            return;
                         }
                     }
-                    if (!bHit)
-                        dm[i].enable = false;
-                    continue;
+                    dm[i].maid = -1;
+                    dm[i].maidFixedAssign = -1;
+                    return;
                 }
 
                 Match match = regexNameAssign.Match(dm[i].name);
@@ -1880,334 +1772,488 @@ Dance								COM3D2		CBL
                         string sTmp = mm.listName[n].Replace(" ", string.Empty);
                         if (sTmp == sMatch)
                         {
-                            if (dm[i].enableInSavedata && IsValidKey(mm.listMaid[n].body0, dm[i].tag) && listEnableTag[n].Add(dm[i].tag))
-                            {
-                                dm[i].enable = true;
-                                bHit = true;
-                                break;
-                            }
+                            dm[i].maid = n;
+                            dm[i].maidFixedAssign = n;
+                            return;
                         }
                     }
-                    if (!bHit)
-                        dm[i].enable = false;
-                    continue;
+                    dm[i].maid = -1;
+                    dm[i].maidFixedAssign = -1;
+                    return;
                 }
-
+                dm[i].maid = dm[i].maidSel;
+                dm[i].maidFixedAssign = -1;
             }
 
-            for (int i = 0; i < dm.Count; i++)
+            private void OnNameFieldChange(int i)
             {
                 Match match = regexNameAssign.Match(dm[i].name);
-                if (dm[i].maidGuid != string.Empty || match.Success)
-                    continue;
-
-                if (dm[i].maidInSavedata >= mm.listMaid.Count || dm[i].maidInSavedata < 0)
+                if (match.Success)
                 {
-                    dm[i].maid = 0;
-                    dm[i].maidSel = 0;
-                }
-                else
-                {
-                    dm[i].maid = dm[i].maidInSavedata;
-                    dm[i].maidSel = dm[i].maidInSavedata;
-                }
-
-                if (dm[i].enableInSavedata && IsValidKey(mm.listMaid[dm[i].maid].body0, dm[i].tag) && listEnableTag[dm[i].maid].Add(dm[i].tag))
-                    dm[i].enable = true;
-                else
-                    dm[i].enable = false;
-            }
-        }
-
-        private void Animate()
-        {
-            for (int i = 0; i < dm.Count; i++)
-            {
-                if (!dm[i].enable)
-                    continue;
-
-                if (dm[i].mod==DataManager.ModType.none)
-                {
-                    if (dm[i].maid < 0 || string.IsNullOrEmpty(dm[i].tag))
-                        continue;
-                }
-
-                if (gm.IsSkipAnimate(i))
-                {
-                    dm[i].bAnimateGroup = true;
-                    continue;
-                }
-
-                if (dm[i].animeType == DataManager.AnimeType.none)
-                    continue;
-
-
-                if (dm[i].actionTimeMax != 0 && dm[i].actionIntervalMax != 0)
-                {
-                    if (--dm[i].actionTimer < 0)
+                    string sMatch = match.Value.Replace("*", string.Empty);
+                    for (int n = 0; n < mm.listName.Count; n++)
                     {
-                        if (dm[i].actionTimer < -dm[i].actionTime)
+                        string sTmp = mm.listName[n].Replace(" ", string.Empty);
+                        if (sTmp == sMatch)
                         {
-                            dm[i].actionInterval = UnityEngine.Random.Range(dm[i].actionIntervalMin, dm[i].actionIntervalMax);
-                            dm[i].actionTime = UnityEngine.Random.Range(dm[i].actionTimeMin, dm[i].actionTimeMax);
-
-                            dm[i].actionTimer = dm[i].actionInterval;
-                            switch (dm[i].timerWaitType)
-                            {
-                                case DataManager.TimerWaitType.zero:
-                                    dm[i].val = 0f;
-                                    break;
-                                case DataManager.TimerWaitType.point:
-                                    dm[i].val = dm[i].point;
-                                    break;
-                            }
-                            continue;
+                            dm[i].maidFixedAssign = n;
+                            dm[i].maid = n;
+                            dm[i].maidGuid = string.Empty;
+                            dm[i].maidNameByGuid = string.Empty;
+                            return;
                         }
+                    }
+                    dm[i].maidFixedAssign = -1;
+                    dm[i].maid = -1;
+                    return;
+                }
+                dm[i].maidFixedAssign = -1;
+                dm[i].maid = dm[i].maidSel;
+            }
+
+            private void OnClickMaidAssignButton(int i)
+            {
+                if (dm[i].maidGuid != string.Empty)
+                {
+                    dm[i].maidGuid = string.Empty;
+                    dm[i].maidNameByGuid = string.Empty;
+                    dm[i].maidFixedAssign = -1;
+                    dm[i].maid = dm[i].maidSel;
+                    return;
+                }
+
+                if (dm[i].maidFixedAssign >= 0)
+                {
+                    SetNameFieldMaidAssign(i, false);
+                    //                dm[i].maidGuid = mm.listMaid[dm[i].maidSel].Param.status.guid;
+                    dm[i].maidGuid = mm.listMaid[dm[i].maidSel].status.guid;
+                    dm[i].maidNameByGuid = mm.listName[dm[i].maidSel];
+                    dm[i].maidFixedAssign = dm[i].maidSel;
+                    dm[i].maid = dm[i].maidSel;
+                    return;
+                }
+
+                SetNameFieldMaidAssign(i, true);
+                dm[i].maidGuid = string.Empty;
+                dm[i].maidNameByGuid = string.Empty;
+                dm[i].maidFixedAssign = dm[i].maidSel;
+                dm[i].maid = dm[i].maidSel;
+            }
+
+            private void SetNameFieldMaidAssign(int i, bool b)
+            {
+                Match match = regexNameAssign.Match(dm[i].name);
+                if (b)
+                {
+                    string sMaidName = mm.listName[dm[i].maidSel];
+                    sMaidName = "*" + sMaidName.Replace(" ", string.Empty) + "*";
+
+                    if (match.Success)
+                    {
+                        dm[i].name = regexNameAssign.Replace(dm[i].name, sMaidName);
                     }
                     else
                     {
-                        continue;
+                        dm[i].name = sMaidName + dm[i].name;
                     }
-                }
-
-                switch (dm[i].animeType)
-                {
-                    case DataManager.AnimeType.increase:
-                        dm[i].val = DataIncrease(dm[i]);
-                        break;
-                    case DataManager.AnimeType.decrease:
-                        dm[i].val = DataDecrease(dm[i]);
-                        break;
-                    case DataManager.AnimeType.repeat:
-                        dm[i].val = DataRepetition(dm[i]);
-                        break;
-                    case DataManager.AnimeType.random:
-                        dm[i] = DataRandom(dm[i]);
-                        break;
-                }
-
-                if (dm[i].mod == DataManager.ModType.none)
-                {
-                    VertexMorph_FromProcItem(mm.listMaid[dm[i].maid].body0, dm[i].tag, dm[i].val);
                 }
                 else
                 {
-                    VertexMorph_FromProcItemAll(i);
+                    if (match.Success)
+                    {
+                        dm[i].name = regexNameAssign.Replace(dm[i].name, string.Empty);
+                    }
                 }
             }
-        }
 
-        private void VertexMorph_FromProcItemAll(int i)
-        {
-            foreach (var md in mm.listMaid)
+            private void MoveDM(int i, bool bUp)
             {
-                VertexMorph_FromProcItem(md.body0, dm[i].tag, dm[i].val);
+                if ((i == 0 && bUp) || i == dm.Count - 1 && !bUp)
+                    return;
+
+                int iTarget = bUp ? i - 1 : i + 1;
+
+                DataManager dmTmp = (DataManager)dm[iTarget].Clone();
+                dm[iTarget] = (DataManager)dm[i].Clone();
+                dm[i] = dmTmp;
             }
-        }
 
-        private void Animate_Group()
-        {
-            for (int i = 0; i < dm.Count; i++)
+            //
+
+            private void OnLoad()
             {
-                if (dm[i].bAnimateGroup)
+                List<HashSet<string>> listEnableTag = new List<HashSet<string>>();
+                for (int i = 0; i < mm.listMaid.Count; i++)
                 {
-                    dm[i].val = GetGroupVal(i);
+                    listEnableTag.Add(new HashSet<string>());
+                }
+                bool bHit = false;
+                for (int i = 0; i < dm.Count; i++)
+                {
+                    bHit = false;
+                    if (dm[i].maidGuid != string.Empty)
+                    {
+                        for (int n = 0; n < mm.listName.Count; n++)
+                        {
+                            ///CM>COM               if (mm.listMaid[n].Param.status.guid == dm[i].maidGuid)
+                            if (mm.listMaid[n].status.guid == dm[i].maidGuid)
+                            {
+                                if (dm[i].enableInSavedata && IsValidKey(mm.listMaid[n].body0, dm[i].tag) && listEnableTag[n].Add(dm[i].tag))
+                                {
+                                    dm[i].enable = true;
+                                    bHit = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!bHit)
+                            dm[i].enable = false;
+                        continue;
+                    }
+
+                    Match match = regexNameAssign.Match(dm[i].name);
+                    if (match.Success)
+                    {
+                        string sMatch = match.Value.Replace("*", string.Empty);
+                        for (int n = 0; n < mm.listMaid.Count; n++)
+                        {
+                            string sTmp = mm.listName[n].Replace(" ", string.Empty);
+                            if (sTmp == sMatch)
+                            {
+                                if (dm[i].enableInSavedata && IsValidKey(mm.listMaid[n].body0, dm[i].tag) && listEnableTag[n].Add(dm[i].tag))
+                                {
+                                    dm[i].enable = true;
+                                    bHit = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!bHit)
+                            dm[i].enable = false;
+                        continue;
+                    }
+
+                }
+
+                for (int i = 0; i < dm.Count; i++)
+                {
+                    Match match = regexNameAssign.Match(dm[i].name);
+                    if (dm[i].maidGuid != string.Empty || match.Success)
+                        continue;
+
+                    if (dm[i].maidInSavedata >= mm.listMaid.Count || dm[i].maidInSavedata < 0)
+                    {
+                        dm[i].maid = 0;
+                        dm[i].maidSel = 0;
+                    }
+                    else
+                    {
+                        dm[i].maid = dm[i].maidInSavedata;
+                        dm[i].maidSel = dm[i].maidInSavedata;
+                    }
+
+                    if (dm[i].enableInSavedata && IsValidKey(mm.listMaid[dm[i].maid].body0, dm[i].tag) && listEnableTag[dm[i].maid].Add(dm[i].tag))
+                        dm[i].enable = true;
+                    else
+                        dm[i].enable = false;
+                }
+            }
+
+            private void Animate()
+            {
+                for (int i = 0; i < dm.Count; i++)
+                {
+                    if (!dm[i].enable)
+                        continue;
+
                     if (dm[i].mod == DataManager.ModType.none)
                     {
-                        VertexMorph_FromProcItem(mm.listMaid[dm[i].maid].body0, dm[i].tag, dm[i].val);                        
+                        if (dm[i].maid < 0 || string.IsNullOrEmpty(dm[i].tag))
+                            continue;
+                    }
+
+                    if (gm.IsSkipAnimate(i))
+                    {
+                        dm[i].bAnimateGroup = true;
+                        continue;
+                    }
+
+                    if (dm[i].animeType == DataManager.AnimeType.none)
+                        continue;
+
+
+                    if (dm[i].actionTimeMax != 0 && dm[i].actionIntervalMax != 0)
+                    {
+                        if (--dm[i].actionTimer < 0)
+                        {
+                            if (dm[i].actionTimer < -dm[i].actionTime)
+                            {
+                                dm[i].actionInterval = UnityEngine.Random.Range(dm[i].actionIntervalMin, dm[i].actionIntervalMax);
+                                dm[i].actionTime = UnityEngine.Random.Range(dm[i].actionTimeMin, dm[i].actionTimeMax);
+
+                                dm[i].actionTimer = dm[i].actionInterval;
+                                switch (dm[i].timerWaitType)
+                                {
+                                    case DataManager.TimerWaitType.zero:
+                                        dm[i].val = 0f;
+                                        break;
+                                    case DataManager.TimerWaitType.point:
+                                        dm[i].val = dm[i].point;
+                                        break;
+                                }
+                                continue;
+                            }
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+
+                    switch (dm[i].animeType)
+                    {
+                        case DataManager.AnimeType.increase:
+                            dm[i].val = DataIncrease(dm[i]);
+                            break;
+                        case DataManager.AnimeType.decrease:
+                            dm[i].val = DataDecrease(dm[i]);
+                            break;
+                        case DataManager.AnimeType.repeat:
+                            dm[i].val = DataRepetition(dm[i]);
+                            break;
+                        case DataManager.AnimeType.random:
+                            dm[i] = DataRandom(dm[i]);
+                            break;
+                    }
+
+                    if (dm[i].mod == DataManager.ModType.none)
+                    {
+                        VertexMorph_FromProcItem(mm.listMaid[dm[i].maid].body0, dm[i].tag, dm[i].val);
                     }
                     else
                     {
                         VertexMorph_FromProcItemAll(i);
                     }
-                    dm[i].bAnimateGroup = false;
                 }
             }
-        }
 
-        private float GetGroupVal(int iDm)
-        {
-            if (dm[gm.GetMaster(dm[iDm].group)].modulate2 == 0f)
-                return dm[iDm].point;
-
-            float fMin, fMax, fTime;
-
-            GetMinMax(dm[gm.GetMaster(dm[iDm].group)].point, dm[gm.GetMaster(dm[iDm].group)].modulate2, out fMin, out fMax);
-            fTime = (dm[gm.GetMaster(dm[iDm].group)].val - fMin) / (fMax - fMin);
-            
-            if (dm[iDm].groupReverse)
-                fTime = 1f - fTime;
-            GetMinMax(dm[iDm].groupPoint, dm[iDm].groupModulate2, out fMin, out fMax);
-
-            if (dm[gm.GetMaster(dm[iDm].group)].animeType == DataManager.AnimeType.repeat)
-                fTime = Mathf.PingPong(fTime + dm[iDm].groupOffset * dm[gm.GetMaster(dm[iDm].group)].process, 1f);
-            else
-                fTime = Mathf.Repeat(fTime + dm[iDm].groupOffset, 1f);
-
-            return (fTime * dm[iDm].groupModulate2) + fMin;
-        }
-
-        private float DataIncrease(DataManager d)
-        {
-            float fMin;
-            float fMax;
-            float f;
-
-            GetMinMax(d.point, d.modulate2, out fMin, out fMax);
-
-            if (fMin >= fMax)
-                return fMax;
-
-            f = d.val + (d.modulate2 * d.modulate1) * 0.75f;
-            while (f > fMax)
+            private void VertexMorph_FromProcItemAll(int i)
             {
-                f = fMin + (f - fMax);
+                foreach (var md in mm.listMaid)
+                {
+                    VertexMorph_FromProcItem(md.body0, dm[i].tag, dm[i].val);
+                }
             }
 
-            return f;
-        }
-
-        private float DataDecrease(DataManager d)
-        {
-            float fMin;
-            float fMax;
-            float f;
-
-            GetMinMax(d.point, d.modulate2, out fMin, out fMax);
-            if (fMin >= fMax)
-                return fMax;
-
-            f = d.val - (d.modulate2 * d.modulate1) * 0.75f;
-            while (f < fMin)
+            private void Animate_Group()
             {
-                f = fMax + (f - fMin);
+                for (int i = 0; i < dm.Count; i++)
+                {
+                    if (dm[i].bAnimateGroup)
+                    {
+                        dm[i].val = GetGroupVal(i);
+                        if (dm[i].mod == DataManager.ModType.none)
+                        {
+                            VertexMorph_FromProcItem(mm.listMaid[dm[i].maid].body0, dm[i].tag, dm[i].val);
+                        }
+                        else
+                        {
+                            VertexMorph_FromProcItemAll(i);
+                        }
+                        dm[i].bAnimateGroup = false;
+                    }
+                }
             }
 
-            return f;
-        }
-
-        private float DataRepetition(DataManager d)
-        {
-            float fMin;
-            float fMax;
-            float f;
-
-            GetMinMax(d.point, d.modulate2, out fMin, out fMax);
-
-            f = d.val + (d.modulate2 * d.modulate1) * 0.75f * d.process;
-            while (f > fMax || f < fMin)
+            private float GetGroupVal(int iDm)
             {
-                if (d.process >= 0)
-                    f -= f - fMax;
+                if (dm[gm.GetMaster(dm[iDm].group)].modulate2 == 0f)
+                    return dm[iDm].point;
+
+                float fMin, fMax, fTime;
+
+                GetMinMax(dm[gm.GetMaster(dm[iDm].group)].point, dm[gm.GetMaster(dm[iDm].group)].modulate2, out fMin, out fMax);
+                fTime = (dm[gm.GetMaster(dm[iDm].group)].val - fMin) / (fMax - fMin);
+
+                if (dm[iDm].groupReverse)
+                    fTime = 1f - fTime;
+                GetMinMax(dm[iDm].groupPoint, dm[iDm].groupModulate2, out fMin, out fMax);
+
+                if (dm[gm.GetMaster(dm[iDm].group)].animeType == DataManager.AnimeType.repeat)
+                    fTime = Mathf.PingPong(fTime + dm[iDm].groupOffset * dm[gm.GetMaster(dm[iDm].group)].process, 1f);
                 else
-                    f -= f - fMin;
-                d.process *= -1;
+                    fTime = Mathf.Repeat(fTime + dm[iDm].groupOffset, 1f);
+
+                return (fTime * dm[iDm].groupModulate2) + fMin;
             }
 
-            return f;
-        }
-
-        private DataManager DataRandom(DataManager d)
-        {
-            if (--d.process < 0)
+            private float DataIncrease(DataManager d)
             {
                 float fMin;
                 float fMax;
+                float f;
+
                 GetMinMax(d.point, d.modulate2, out fMin, out fMax);
 
-                d.val = UnityEngine.Random.Range(fMin, fMax);
-                d.process = 20 - (int)(d.modulate1 * 20);
-            }
-            return d;
-        }
+                if (fMin >= fMax)
+                    return fMax;
 
-        private void GetMinMax(float fp, float fm, out float fMin, out float fMax)
-        {
-            fMin = (1f - fm) * fp;
-            fMax = fMin + fm;
-        }
-
-        /// <summary>
-        /// 얼굴 효과 반영후 얼굴 여부 반환?
-        /// </summary>
-        /// <param name="body"></param>
-        /// <param name="sTag"></param>
-        /// <param name="f"></param>
-        /// <returns></returns>
-        private bool VertexMorph_FromProcItem(TBody body, string sTag, float f)
-        {
-            bool bFace = false;
-            for (int i = 0; i < body.goSlot.Count; i++)
-            {
-                TMorph morph = body.goSlot[i].morph;
-                if (morph != null)
+                f = d.val + (d.modulate2 * d.modulate1) * 0.75f;
+                while (f > fMax)
                 {
-                    if (morph.Contains(sTag))
+                    f = fMin + (f - fMax);
+                }
+
+                return f;
+            }
+
+            private float DataDecrease(DataManager d)
+            {
+                float fMin;
+                float fMax;
+                float f;
+
+                GetMinMax(d.point, d.modulate2, out fMin, out fMax);
+                if (fMin >= fMax)
+                    return fMax;
+
+                f = d.val - (d.modulate2 * d.modulate1) * 0.75f;
+                while (f < fMin)
+                {
+                    f = fMax + (f - fMin);
+                }
+
+                return f;
+            }
+
+            private float DataRepetition(DataManager d)
+            {
+                float fMin;
+                float fMax;
+                float f;
+
+                GetMinMax(d.point, d.modulate2, out fMin, out fMax);
+
+                f = d.val + (d.modulate2 * d.modulate1) * 0.75f * d.process;
+                while (f > fMax || f < fMin)
+                {
+                    if (d.process >= 0)
+                        f -= f - fMax;
+                    else
+                        f -= f - fMin;
+                    d.process *= -1;
+                }
+
+                return f;
+            }
+
+            private DataManager DataRandom(DataManager d)
+            {
+                if (--d.process < 0)
+                {
+                    float fMin;
+                    float fMax;
+                    GetMinMax(d.point, d.modulate2, out fMin, out fMax);
+
+                    d.val = UnityEngine.Random.Range(fMin, fMax);
+                    d.process = 20 - (int)(d.modulate1 * 20);
+                }
+                return d;
+            }
+
+            private void GetMinMax(float fp, float fm, out float fMin, out float fMax)
+            {
+                fMin = (1f - fm) * fp;
+                fMax = fMin + fm;
+            }
+
+            /// <summary>
+            /// 얼굴 효과 반영후 얼굴 여부 반환?
+            /// </summary>
+            /// <param name="body"></param>
+            /// <param name="sTag"></param>
+            /// <param name="f"></param>
+            /// <returns></returns>
+            private bool VertexMorph_FromProcItem(TBody body, string sTag, float f)
+            {
+                bool bFace = false;
+                for (int i = 0; i < body.goSlot.Count; i++)
+                {
+                    TMorph morph = body.goSlot[i].morph;
+                    if (morph != null)
                     {
-                        if (i == 1)
+                        if (morph.Contains(sTag))
                         {
-                            bFace = true;
+                            if (i == 1)
+                            {
+                                bFace = true;
+                            }
+                            int h = (int)morph.hash[sTag];
+                            ///cm>com
+                            ///不要な処理につきコメントアウト 불필요한 처리에 대해 주석
+                            ///                     morph.BlendValuesCHK[h] = -1f;
+
+                            ///cm>com               morph.BlendValues[h] = f;
+                            morph.SetBlendValues(h, f);
+
+                            morph.FixBlendValues();
                         }
-		                int h = (int)morph.hash[sTag];
-                        ///cm>com
-                        ///不要な処理につきコメントアウト 불필요한 처리에 대해 주석
-                        ///                     morph.BlendValuesCHK[h] = -1f;
-
-                        ///cm>com               morph.BlendValues[h] = f;
-                        morph.SetBlendValues(h, f);
-
-                    	morph.FixBlendValues();
                     }
                 }
+                return bFace;
             }
-            return bFace;
-        }
 
-		//[2018/11/21 @usausaex]キーの並び替えのために変更;
-        private string[] GetAllKeys(TBody body)
-        {
-            List<string> listKeys = new List<string>();
-            for(int i = 0; i < body.goSlot.Count; i++) {
-                List<string> listSubKeys = new List<string>();
-                TMorph morph = body.goSlot[i].morph;
-                
-                if(morph != null) {
-                    foreach(string s in morph.hash.Keys) {
-                        if(listKeys.Contains(s)) {
-                            continue;
-                        }
-                        if(listSubKeys.Contains(s)) {
-                            continue;
-                        }
-                        if(sIgnoreKeys.Contains(s)) {
-                            continue;
-                        }
-                        listSubKeys.Add(s);
-                    }
-                }
-                //アイテムごとのキーlistSubKeysをソートして最終リストlistKeysに追加;
-                listSubKeys.Sort();
-                listKeys.AddRange(listSubKeys);
-            }
-            
-            return listKeys.ToArray();
-        }
-
-        private bool IsValidKey(TBody body, string sTag)
-        {
-            for (int i = 0; i < body.goSlot.Count; i++)
+            //[2018/11/21 @usausaex]キーの並び替えのために変更;
+            private string[] GetAllKeys(TBody body)
             {
-                TMorph morph = body.goSlot[i].morph;
-                if (morph != null)
+                List<string> listKeys = new List<string>();
+                for (int i = 0; i < body.goSlot.Count; i++)
                 {
-                    if (morph.Contains(sTag))
+                    List<string> listSubKeys = new List<string>();
+                    TMorph morph = body.goSlot[i].morph;
+
+                    if (morph != null)
                     {
-                        return true;
+                        foreach (string s in morph.hash.Keys)
+                        {
+                            if (listKeys.Contains(s))
+                            {
+                                continue;
+                            }
+                            if (listSubKeys.Contains(s))
+                            {
+                                continue;
+                            }
+                            if (sIgnoreKeys.Contains(s))
+                            {
+                                continue;
+                            }
+                            listSubKeys.Add(s);
+                        }
+                    }
+                    //アイテムごとのキーlistSubKeysをソートして最終リストlistKeysに追加;
+                    listSubKeys.Sort();
+                    listKeys.AddRange(listSubKeys);
+                }
+
+                return listKeys.ToArray();
+            }
+
+            private bool IsValidKey(TBody body, string sTag)
+            {
+                for (int i = 0; i < body.goSlot.Count; i++)
+                {
+                    TMorph morph = body.goSlot[i].morph;
+                    if (morph != null)
+                    {
+                        if (morph.Contains(sTag))
+                        {
+                            return true;
+                        }
                     }
                 }
+                return false;
             }
-            return false;
-        }
 
         //
 
@@ -2266,7 +2312,7 @@ Dance								COM3D2		CBL
 
                 this.fVals = fVals;
                 sVals = new string[fVals.Length];
-                for(int i = 0; i < sVals.Length; i++)
+                for (int i = 0; i < sVals.Length; i++)
                 {
                     sVals[i] = fVals[i].ToString();
                 }
@@ -2291,7 +2337,7 @@ Dance								COM3D2		CBL
                     rectItem.x += rectItem.width;
                     //rectItem.width = (rect.width - iFontSize) / 5f * 3f;
                     sTmp = Utl.DrawTextFieldF(rectItem, sVals[i], bGroup && i == 0 ? -1f : 0f, 1f, gsText);
-                    if(sTmp != sVals[i])
+                    if (sTmp != sVals[i])
                     {
                         sVals[i] = sTmp;
                         fVals[i] = float.Parse(sTmp);
@@ -2485,7 +2531,7 @@ Dance								COM3D2		CBL
 
             public int maid { get; set; }
             public int maidInSavedata { get; set; }
-            
+
             // 메이드 번호?
             public int maidSel { get; set; }
             public int maidFixedAssign { get; set; }
@@ -2516,8 +2562,8 @@ Dance								COM3D2		CBL
             public float groupOffset { get; set; }
             public float groupModulate2 { get; set; }
             public float groupPoint { get; set; }
-            
-            
+
+
             //public string groupPointText { get; set; }
             //public string groupModulate2Text { get; set; }
 
