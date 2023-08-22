@@ -24,11 +24,11 @@ namespace COM3D2.ShapeAnimator
     PluginFilter("COM3D2OHx64"),
     PluginFilter("COM3D2OHVRx64"),
     PluginName("ShapeAnimator By Lilly&Inory"),
-    PluginVersion("0.3.8.5")]
+    PluginVersion("0.3.8.4")]
     public class ShapeAnimator : PluginBase
     {
         private readonly static string PLUGIN_NAME = "ShapeAnimator By Lilly&Inory";
-        private readonly static string PLUGIN_VERSION = "0.3.8.5";
+        private readonly static string PLUGIN_VERSION = "0.3.8.4";
         private readonly static int WINDOW_ID = 190;
 
         /*
@@ -1625,31 +1625,29 @@ namespace COM3D2.ShapeAnimator
                 // 如果是所有角色模式
                 if (dm[i].mod == DataManager.ModType.All)
                 {
+
                     // 遍历所有角色
-                    for (int j = 0; j < mm.listMaid.Count; j++)
+                    for (int j = 0; j < bFace.Length; j++)
                     {
 
-                        Maid maid = mm.listMaid[j];
-
-                        // 应用或关闭效果
+                        // 如果被禁用
                         if (!dm[i].enable)
                         {
+                            // 如果匹配禁用序号
                             if (iDisable == i)
                             {
-                                VertexMorph_FromProcItem(maid.body0, dm[i].tag, 0f);
+                                // 应用0效果
+                                VertexMorph_FromProcItem(mm.listMaid[j].body0, dm[i].tag, 0f);
                             }
-                        }
-                        else
-                        {
-                            b[j] = VertexMorph_FromProcItem(maid.body0, dm[i].tag, dm[i].val);
+                            continue;
                         }
 
+                        // 否则应用效果
+                        b[j] = VertexMorph_FromProcItem(mm.listMaid[j].body0, dm[i].tag, dm[i].val);
                         bFace[j] = b[j] ? b[j] : bFace[j];
-
                     }
-
                 }
-                //如果不是所有角色模式
+                // 如果不是所有角色模式
                 else
                 {
                     //if (dm[i].mod == DataManager.ModType.none)
@@ -1680,87 +1678,235 @@ namespace COM3D2.ShapeAnimator
                     //        bFace[j] = b[j] ? b[j] : bFace[j];
                     //    }
                     //}
-
                 }
+            }
 
-                // 이거 제거하는게 나을듯 한데
-                for (int i = 0; i < bFace.Length; i++)
+            // 이거 제거하는게 나을듯 한데
+            for (int i = 0; i < bFace.Length; i++)
+            {
+                if (bFace[i] == mm.listMaid[i].boMabataki)
                 {
-                    if (bFace[i] == mm.listMaid[i].boMabataki)
+                    mm.listMaid[i].boMabataki = !bFace[i];
+                    if (bFace[i])
                     {
-                        mm.listMaid[i].boMabataki = !bFace[i];
-                        if (bFace[i])
-                        {
-                            mm.listMaid[i].body0.Face.morph.EyeMabataki = 0f; //  윙크
-                        }
+                        mm.listMaid[i].body0.Face.morph.EyeMabataki = 0f; //  윙크
                     }
                 }
-
-                //for (int i = 0; i < dm.Count; i++)
-                //{
-                //    if (dm[i].enable)
-                //    {
-                //        b[dm[i].maid] = VertexMorph_FromProcItem(mm.listMaid[dm[i].maid].body0, dm[i].tag, dm[i].val);
-                //        //if (iChangeMaid >= 0)
-                //        //{
-                //        //    if (mm.listMaid.Count > iChangeMaid)
-                //        //        VertexMorph_FromProcItem(mm.listMaid[iChangeMaid].body0, dm[i].tag, 0f, true);
-                //        //}
-                //        //b[dm[i].maid] = VertexMorph_FromProcItem(mm.listMaid[dm[i].maid].body0, dm[i].tag, dm[i].val, true);
-                //    }
-                //    else if (i == iDisable)
-                //    {
-                //        VertexMorph_FromProcItem(mm.listMaid[dm[i].maid].body0, dm[i].tag, dm[i].val);
-                //        b[dm[i].maid] = false;
-                //    }
-                //    bFace[dm[i].maid] = b[dm[i].maid] ? b[dm[i].maid] : bFace[dm[i].maid];
-                //}
-
-                //for (int i = 0; i < bFace.Length; i++)
-                //{
-                //    if (bFace[i] == mm.listMaid[i].boMabataki)
-                //    {
-                //        mm.listMaid[i].boMabataki = !bFace[i];
-                //        if (bFace[i])
-                //        {
-                //            //  윙크
-                //            mm.listMaid[i].body0.Face.morph.EyeMabataki = 0f;
-                //            // 目閉じ対策？　とりあえず保留 눈 닫 대책? 일단 보류
-                //            //                        mm.listMaid[i].body0.Face.morph.BlendValues[(int)mm.listMaid[i].body0.Face.morph.hash["eyeclose"]] = 0f;
-                //        }
-                //    }
-                //}
             }
 
-            private void OnMMUpdate()
+            //for (int i = 0; i < dm.Count; i++)
+            //{
+            //    if (dm[i].enable)
+            //    {
+            //        b[dm[i].maid] = VertexMorph_FromProcItem(mm.listMaid[dm[i].maid].body0, dm[i].tag, dm[i].val);
+            //        //if (iChangeMaid >= 0)
+            //        //{
+            //        //    if (mm.listMaid.Count > iChangeMaid)
+            //        //        VertexMorph_FromProcItem(mm.listMaid[iChangeMaid].body0, dm[i].tag, 0f, true);
+            //        //}
+            //        //b[dm[i].maid] = VertexMorph_FromProcItem(mm.listMaid[dm[i].maid].body0, dm[i].tag, dm[i].val, true);
+            //    }
+            //    else if (i == iDisable)
+            //    {
+            //        VertexMorph_FromProcItem(mm.listMaid[dm[i].maid].body0, dm[i].tag, dm[i].val);
+            //        b[dm[i].maid] = false;
+            //    }
+            //    bFace[dm[i].maid] = b[dm[i].maid] ? b[dm[i].maid] : bFace[dm[i].maid];
+            //}
+
+            //for (int i = 0; i < bFace.Length; i++)
+            //{
+            //    if (bFace[i] == mm.listMaid[i].boMabataki)
+            //    {
+            //        mm.listMaid[i].boMabataki = !bFace[i];
+            //        if (bFace[i])
+            //        {
+            //            //  윙크
+            //            mm.listMaid[i].body0.Face.morph.EyeMabataki = 0f;
+            //            // 目閉じ対策？　とりあえず保留 눈 닫 대책? 일단 보류
+            //            //                        mm.listMaid[i].body0.Face.morph.BlendValues[(int)mm.listMaid[i].body0.Face.morph.hash["eyeclose"]] = 0f;
+            //        }
+            //    }
+            //}
+        }
+
+        private void OnMMUpdate()
+        {
+            int iMaidCount = mm.listMaid.Count;
+            for (int i = 0; i < dm.Count; i++)
             {
-                int iMaidCount = mm.listMaid.Count;
-                for (int i = 0; i < dm.Count; i++)
+                if (dm[i].maidSel >= iMaidCount)
+                    dm[i].maidSel = 0;
+                ResetMaidAssign(i);
+            }
+        }
+
+        private void ResetMaidAssign(int i)
+        {
+            if (dm[i].maidGuid != string.Empty)
+            {
+                for (int n = 0; n < mm.listName.Count; n++)
                 {
-                    if (dm[i].maidSel >= iMaidCount)
-                        dm[i].maidSel = 0;
-                    ResetMaidAssign(i);
+                    //                    if (mm.listMaid[n].Param.status.guid == dm[i].maidGuid)
+                    if (mm.listMaid[n].status.guid == dm[i].maidGuid)
+                    {
+                        dm[i].maid = n;
+                        dm[i].maidFixedAssign = n;
+                        dm[i].maidNameByGuid = mm.listName[n];
+                        return;
+                    }
+                }
+                dm[i].maid = -1;
+                dm[i].maidFixedAssign = -1;
+                return;
+            }
+
+            Match match = regexNameAssign.Match(dm[i].name);
+            if (match.Success)
+            {
+                string sMatch = match.Value.Replace("*", string.Empty);
+                for (int n = 0; n < mm.listMaid.Count; n++)
+                {
+                    string sTmp = mm.listName[n].Replace(" ", string.Empty);
+                    if (sTmp == sMatch)
+                    {
+                        dm[i].maid = n;
+                        dm[i].maidFixedAssign = n;
+                        return;
+                    }
+                }
+                dm[i].maid = -1;
+                dm[i].maidFixedAssign = -1;
+                return;
+            }
+            dm[i].maid = dm[i].maidSel;
+            dm[i].maidFixedAssign = -1;
+        }
+
+        private void OnNameFieldChange(int i)
+        {
+            Match match = regexNameAssign.Match(dm[i].name);
+            if (match.Success)
+            {
+                string sMatch = match.Value.Replace("*", string.Empty);
+                for (int n = 0; n < mm.listName.Count; n++)
+                {
+                    string sTmp = mm.listName[n].Replace(" ", string.Empty);
+                    if (sTmp == sMatch)
+                    {
+                        dm[i].maidFixedAssign = n;
+                        dm[i].maid = n;
+                        dm[i].maidGuid = string.Empty;
+                        dm[i].maidNameByGuid = string.Empty;
+                        return;
+                    }
+                }
+                dm[i].maidFixedAssign = -1;
+                dm[i].maid = -1;
+                return;
+            }
+            dm[i].maidFixedAssign = -1;
+            dm[i].maid = dm[i].maidSel;
+        }
+
+        private void OnClickMaidAssignButton(int i)
+        {
+            if (dm[i].maidGuid != string.Empty)
+            {
+                dm[i].maidGuid = string.Empty;
+                dm[i].maidNameByGuid = string.Empty;
+                dm[i].maidFixedAssign = -1;
+                dm[i].maid = dm[i].maidSel;
+                return;
+            }
+
+            if (dm[i].maidFixedAssign >= 0)
+            {
+                SetNameFieldMaidAssign(i, false);
+                //                dm[i].maidGuid = mm.listMaid[dm[i].maidSel].Param.status.guid;
+                dm[i].maidGuid = mm.listMaid[dm[i].maidSel].status.guid;
+                dm[i].maidNameByGuid = mm.listName[dm[i].maidSel];
+                dm[i].maidFixedAssign = dm[i].maidSel;
+                dm[i].maid = dm[i].maidSel;
+                return;
+            }
+
+            SetNameFieldMaidAssign(i, true);
+            dm[i].maidGuid = string.Empty;
+            dm[i].maidNameByGuid = string.Empty;
+            dm[i].maidFixedAssign = dm[i].maidSel;
+            dm[i].maid = dm[i].maidSel;
+        }
+
+        private void SetNameFieldMaidAssign(int i, bool b)
+        {
+            Match match = regexNameAssign.Match(dm[i].name);
+            if (b)
+            {
+                string sMaidName = mm.listName[dm[i].maidSel];
+                sMaidName = "*" + sMaidName.Replace(" ", string.Empty) + "*";
+
+                if (match.Success)
+                {
+                    dm[i].name = regexNameAssign.Replace(dm[i].name, sMaidName);
+                }
+                else
+                {
+                    dm[i].name = sMaidName + dm[i].name;
                 }
             }
-
-            private void ResetMaidAssign(int i)
+            else
             {
+                if (match.Success)
+                {
+                    dm[i].name = regexNameAssign.Replace(dm[i].name, string.Empty);
+                }
+            }
+        }
+
+        private void MoveDM(int i, bool bUp)
+        {
+            if ((i == 0 && bUp) || i == dm.Count - 1 && !bUp)
+                return;
+
+            int iTarget = bUp ? i - 1 : i + 1;
+
+            DataManager dmTmp = (DataManager)dm[iTarget].Clone();
+            dm[iTarget] = (DataManager)dm[i].Clone();
+            dm[i] = dmTmp;
+        }
+
+        //
+
+        private void OnLoad()
+        {
+            List<HashSet<string>> listEnableTag = new List<HashSet<string>>();
+            for (int i = 0; i < mm.listMaid.Count; i++)
+            {
+                listEnableTag.Add(new HashSet<string>());
+            }
+            bool bHit = false;
+            for (int i = 0; i < dm.Count; i++)
+            {
+                bHit = false;
                 if (dm[i].maidGuid != string.Empty)
                 {
                     for (int n = 0; n < mm.listName.Count; n++)
                     {
-                        //                    if (mm.listMaid[n].Param.status.guid == dm[i].maidGuid)
+                        ///CM>COM               if (mm.listMaid[n].Param.status.guid == dm[i].maidGuid)
                         if (mm.listMaid[n].status.guid == dm[i].maidGuid)
                         {
-                            dm[i].maid = n;
-                            dm[i].maidFixedAssign = n;
-                            dm[i].maidNameByGuid = mm.listName[n];
-                            return;
+                            if (dm[i].enableInSavedata && IsValidKey(mm.listMaid[n].body0, dm[i].tag) && listEnableTag[n].Add(dm[i].tag))
+                            {
+                                dm[i].enable = true;
+                                bHit = true;
+                                break;
+                            }
                         }
                     }
-                    dm[i].maid = -1;
-                    dm[i].maidFixedAssign = -1;
-                    return;
+                    if (!bHit)
+                        dm[i].enable = false;
+                    continue;
                 }
 
                 Match match = regexNameAssign.Match(dm[i].name);
@@ -1772,260 +1918,138 @@ namespace COM3D2.ShapeAnimator
                         string sTmp = mm.listName[n].Replace(" ", string.Empty);
                         if (sTmp == sMatch)
                         {
-                            dm[i].maid = n;
-                            dm[i].maidFixedAssign = n;
-                            return;
+                            if (dm[i].enableInSavedata && IsValidKey(mm.listMaid[n].body0, dm[i].tag) && listEnableTag[n].Add(dm[i].tag))
+                            {
+                                dm[i].enable = true;
+                                bHit = true;
+                                break;
+                            }
                         }
                     }
-                    dm[i].maid = -1;
-                    dm[i].maidFixedAssign = -1;
-                    return;
+                    if (!bHit)
+                        dm[i].enable = false;
+                    continue;
                 }
-                dm[i].maid = dm[i].maidSel;
-                dm[i].maidFixedAssign = -1;
+
             }
 
-            private void OnNameFieldChange(int i)
+            for (int i = 0; i < dm.Count; i++)
             {
                 Match match = regexNameAssign.Match(dm[i].name);
-                if (match.Success)
+                if (dm[i].maidGuid != string.Empty || match.Success)
+                    continue;
+
+                if (dm[i].maidInSavedata >= mm.listMaid.Count || dm[i].maidInSavedata < 0)
                 {
-                    string sMatch = match.Value.Replace("*", string.Empty);
-                    for (int n = 0; n < mm.listName.Count; n++)
-                    {
-                        string sTmp = mm.listName[n].Replace(" ", string.Empty);
-                        if (sTmp == sMatch)
-                        {
-                            dm[i].maidFixedAssign = n;
-                            dm[i].maid = n;
-                            dm[i].maidGuid = string.Empty;
-                            dm[i].maidNameByGuid = string.Empty;
-                            return;
-                        }
-                    }
-                    dm[i].maidFixedAssign = -1;
-                    dm[i].maid = -1;
-                    return;
-                }
-                dm[i].maidFixedAssign = -1;
-                dm[i].maid = dm[i].maidSel;
-            }
-
-            private void OnClickMaidAssignButton(int i)
-            {
-                if (dm[i].maidGuid != string.Empty)
-                {
-                    dm[i].maidGuid = string.Empty;
-                    dm[i].maidNameByGuid = string.Empty;
-                    dm[i].maidFixedAssign = -1;
-                    dm[i].maid = dm[i].maidSel;
-                    return;
-                }
-
-                if (dm[i].maidFixedAssign >= 0)
-                {
-                    SetNameFieldMaidAssign(i, false);
-                    //                dm[i].maidGuid = mm.listMaid[dm[i].maidSel].Param.status.guid;
-                    dm[i].maidGuid = mm.listMaid[dm[i].maidSel].status.guid;
-                    dm[i].maidNameByGuid = mm.listName[dm[i].maidSel];
-                    dm[i].maidFixedAssign = dm[i].maidSel;
-                    dm[i].maid = dm[i].maidSel;
-                    return;
-                }
-
-                SetNameFieldMaidAssign(i, true);
-                dm[i].maidGuid = string.Empty;
-                dm[i].maidNameByGuid = string.Empty;
-                dm[i].maidFixedAssign = dm[i].maidSel;
-                dm[i].maid = dm[i].maidSel;
-            }
-
-            private void SetNameFieldMaidAssign(int i, bool b)
-            {
-                Match match = regexNameAssign.Match(dm[i].name);
-                if (b)
-                {
-                    string sMaidName = mm.listName[dm[i].maidSel];
-                    sMaidName = "*" + sMaidName.Replace(" ", string.Empty) + "*";
-
-                    if (match.Success)
-                    {
-                        dm[i].name = regexNameAssign.Replace(dm[i].name, sMaidName);
-                    }
-                    else
-                    {
-                        dm[i].name = sMaidName + dm[i].name;
-                    }
+                    dm[i].maid = 0;
+                    dm[i].maidSel = 0;
                 }
                 else
                 {
-                    if (match.Success)
-                    {
-                        dm[i].name = regexNameAssign.Replace(dm[i].name, string.Empty);
-                    }
+                    dm[i].maid = dm[i].maidInSavedata;
+                    dm[i].maidSel = dm[i].maidInSavedata;
                 }
+
+                if (dm[i].enableInSavedata && IsValidKey(mm.listMaid[dm[i].maid].body0, dm[i].tag) && listEnableTag[dm[i].maid].Add(dm[i].tag))
+                    dm[i].enable = true;
+                else
+                    dm[i].enable = false;
             }
+        }
 
-            private void MoveDM(int i, bool bUp)
+        private void Animate()
+        {
+            for (int i = 0; i < dm.Count; i++)
             {
-                if ((i == 0 && bUp) || i == dm.Count - 1 && !bUp)
-                    return;
+                if (!dm[i].enable)
+                    continue;
 
-                int iTarget = bUp ? i - 1 : i + 1;
-
-                DataManager dmTmp = (DataManager)dm[iTarget].Clone();
-                dm[iTarget] = (DataManager)dm[i].Clone();
-                dm[i] = dmTmp;
-            }
-
-            //
-
-            private void OnLoad()
-            {
-                List<HashSet<string>> listEnableTag = new List<HashSet<string>>();
-                for (int i = 0; i < mm.listMaid.Count; i++)
+                if (dm[i].mod == DataManager.ModType.none)
                 {
-                    listEnableTag.Add(new HashSet<string>());
+                    if (dm[i].maid < 0 || string.IsNullOrEmpty(dm[i].tag))
+                        continue;
                 }
-                bool bHit = false;
-                for (int i = 0; i < dm.Count; i++)
+
+                if (gm.IsSkipAnimate(i))
                 {
-                    bHit = false;
-                    if (dm[i].maidGuid != string.Empty)
+                    dm[i].bAnimateGroup = true;
+                    continue;
+                }
+
+                if (dm[i].animeType == DataManager.AnimeType.none)
+                    continue;
+
+
+                if (dm[i].actionTimeMax != 0 && dm[i].actionIntervalMax != 0)
+                {
+                    if (--dm[i].actionTimer < 0)
                     {
-                        for (int n = 0; n < mm.listName.Count; n++)
+                        if (dm[i].actionTimer < -dm[i].actionTime)
                         {
-                            ///CM>COM               if (mm.listMaid[n].Param.status.guid == dm[i].maidGuid)
-                            if (mm.listMaid[n].status.guid == dm[i].maidGuid)
+                            dm[i].actionInterval = UnityEngine.Random.Range(dm[i].actionIntervalMin, dm[i].actionIntervalMax);
+                            dm[i].actionTime = UnityEngine.Random.Range(dm[i].actionTimeMin, dm[i].actionTimeMax);
+
+                            dm[i].actionTimer = dm[i].actionInterval;
+                            switch (dm[i].timerWaitType)
                             {
-                                if (dm[i].enableInSavedata && IsValidKey(mm.listMaid[n].body0, dm[i].tag) && listEnableTag[n].Add(dm[i].tag))
-                                {
-                                    dm[i].enable = true;
-                                    bHit = true;
+                                case DataManager.TimerWaitType.zero:
+                                    dm[i].val = 0f;
                                     break;
-                                }
-                            }
-                        }
-                        if (!bHit)
-                            dm[i].enable = false;
-                        continue;
-                    }
-
-                    Match match = regexNameAssign.Match(dm[i].name);
-                    if (match.Success)
-                    {
-                        string sMatch = match.Value.Replace("*", string.Empty);
-                        for (int n = 0; n < mm.listMaid.Count; n++)
-                        {
-                            string sTmp = mm.listName[n].Replace(" ", string.Empty);
-                            if (sTmp == sMatch)
-                            {
-                                if (dm[i].enableInSavedata && IsValidKey(mm.listMaid[n].body0, dm[i].tag) && listEnableTag[n].Add(dm[i].tag))
-                                {
-                                    dm[i].enable = true;
-                                    bHit = true;
+                                case DataManager.TimerWaitType.point:
+                                    dm[i].val = dm[i].point;
                                     break;
-                                }
                             }
-                        }
-                        if (!bHit)
-                            dm[i].enable = false;
-                        continue;
-                    }
-
-                }
-
-                for (int i = 0; i < dm.Count; i++)
-                {
-                    Match match = regexNameAssign.Match(dm[i].name);
-                    if (dm[i].maidGuid != string.Empty || match.Success)
-                        continue;
-
-                    if (dm[i].maidInSavedata >= mm.listMaid.Count || dm[i].maidInSavedata < 0)
-                    {
-                        dm[i].maid = 0;
-                        dm[i].maidSel = 0;
-                    }
-                    else
-                    {
-                        dm[i].maid = dm[i].maidInSavedata;
-                        dm[i].maidSel = dm[i].maidInSavedata;
-                    }
-
-                    if (dm[i].enableInSavedata && IsValidKey(mm.listMaid[dm[i].maid].body0, dm[i].tag) && listEnableTag[dm[i].maid].Add(dm[i].tag))
-                        dm[i].enable = true;
-                    else
-                        dm[i].enable = false;
-                }
-            }
-
-            private void Animate()
-            {
-                for (int i = 0; i < dm.Count; i++)
-                {
-                    if (!dm[i].enable)
-                        continue;
-
-                    if (dm[i].mod == DataManager.ModType.none)
-                    {
-                        if (dm[i].maid < 0 || string.IsNullOrEmpty(dm[i].tag))
-                            continue;
-                    }
-
-                    if (gm.IsSkipAnimate(i))
-                    {
-                        dm[i].bAnimateGroup = true;
-                        continue;
-                    }
-
-                    if (dm[i].animeType == DataManager.AnimeType.none)
-                        continue;
-
-
-                    if (dm[i].actionTimeMax != 0 && dm[i].actionIntervalMax != 0)
-                    {
-                        if (--dm[i].actionTimer < 0)
-                        {
-                            if (dm[i].actionTimer < -dm[i].actionTime)
-                            {
-                                dm[i].actionInterval = UnityEngine.Random.Range(dm[i].actionIntervalMin, dm[i].actionIntervalMax);
-                                dm[i].actionTime = UnityEngine.Random.Range(dm[i].actionTimeMin, dm[i].actionTimeMax);
-
-                                dm[i].actionTimer = dm[i].actionInterval;
-                                switch (dm[i].timerWaitType)
-                                {
-                                    case DataManager.TimerWaitType.zero:
-                                        dm[i].val = 0f;
-                                        break;
-                                    case DataManager.TimerWaitType.point:
-                                        dm[i].val = dm[i].point;
-                                        break;
-                                }
-                                continue;
-                            }
-                        }
-                        else
-                        {
                             continue;
                         }
                     }
-
-                    switch (dm[i].animeType)
+                    else
                     {
-                        case DataManager.AnimeType.increase:
-                            dm[i].val = DataIncrease(dm[i]);
-                            break;
-                        case DataManager.AnimeType.decrease:
-                            dm[i].val = DataDecrease(dm[i]);
-                            break;
-                        case DataManager.AnimeType.repeat:
-                            dm[i].val = DataRepetition(dm[i]);
-                            break;
-                        case DataManager.AnimeType.random:
-                            dm[i] = DataRandom(dm[i]);
-                            break;
+                        continue;
                     }
+                }
 
+                switch (dm[i].animeType)
+                {
+                    case DataManager.AnimeType.increase:
+                        dm[i].val = DataIncrease(dm[i]);
+                        break;
+                    case DataManager.AnimeType.decrease:
+                        dm[i].val = DataDecrease(dm[i]);
+                        break;
+                    case DataManager.AnimeType.repeat:
+                        dm[i].val = DataRepetition(dm[i]);
+                        break;
+                    case DataManager.AnimeType.random:
+                        dm[i] = DataRandom(dm[i]);
+                        break;
+                }
+
+                if (dm[i].mod == DataManager.ModType.none)
+                {
+                    VertexMorph_FromProcItem(mm.listMaid[dm[i].maid].body0, dm[i].tag, dm[i].val);
+                }
+                else
+                {
+                    VertexMorph_FromProcItemAll(i);
+                }
+            }
+        }
+
+        private void VertexMorph_FromProcItemAll(int i)
+        {
+            foreach (var md in mm.listMaid)
+            {
+                VertexMorph_FromProcItem(md.body0, dm[i].tag, dm[i].val);
+            }
+        }
+
+        private void Animate_Group()
+        {
+            for (int i = 0; i < dm.Count; i++)
+            {
+                if (dm[i].bAnimateGroup)
+                {
+                    dm[i].val = GetGroupVal(i);
                     if (dm[i].mod == DataManager.ModType.none)
                     {
                         VertexMorph_FromProcItem(mm.listMaid[dm[i].maid].body0, dm[i].tag, dm[i].val);
@@ -2034,227 +2058,201 @@ namespace COM3D2.ShapeAnimator
                     {
                         VertexMorph_FromProcItemAll(i);
                     }
+                    dm[i].bAnimateGroup = false;
                 }
-            }
-
-            private void VertexMorph_FromProcItemAll(int i)
-            {
-                foreach (var md in mm.listMaid)
-                {
-                    VertexMorph_FromProcItem(md.body0, dm[i].tag, dm[i].val);
-                }
-            }
-
-            private void Animate_Group()
-            {
-                for (int i = 0; i < dm.Count; i++)
-                {
-                    if (dm[i].bAnimateGroup)
-                    {
-                        dm[i].val = GetGroupVal(i);
-                        if (dm[i].mod == DataManager.ModType.none)
-                        {
-                            VertexMorph_FromProcItem(mm.listMaid[dm[i].maid].body0, dm[i].tag, dm[i].val);
-                        }
-                        else
-                        {
-                            VertexMorph_FromProcItemAll(i);
-                        }
-                        dm[i].bAnimateGroup = false;
-                    }
-                }
-            }
-
-            private float GetGroupVal(int iDm)
-            {
-                if (dm[gm.GetMaster(dm[iDm].group)].modulate2 == 0f)
-                    return dm[iDm].point;
-
-                float fMin, fMax, fTime;
-
-                GetMinMax(dm[gm.GetMaster(dm[iDm].group)].point, dm[gm.GetMaster(dm[iDm].group)].modulate2, out fMin, out fMax);
-                fTime = (dm[gm.GetMaster(dm[iDm].group)].val - fMin) / (fMax - fMin);
-
-                if (dm[iDm].groupReverse)
-                    fTime = 1f - fTime;
-                GetMinMax(dm[iDm].groupPoint, dm[iDm].groupModulate2, out fMin, out fMax);
-
-                if (dm[gm.GetMaster(dm[iDm].group)].animeType == DataManager.AnimeType.repeat)
-                    fTime = Mathf.PingPong(fTime + dm[iDm].groupOffset * dm[gm.GetMaster(dm[iDm].group)].process, 1f);
-                else
-                    fTime = Mathf.Repeat(fTime + dm[iDm].groupOffset, 1f);
-
-                return (fTime * dm[iDm].groupModulate2) + fMin;
-            }
-
-            private float DataIncrease(DataManager d)
-            {
-                float fMin;
-                float fMax;
-                float f;
-
-                GetMinMax(d.point, d.modulate2, out fMin, out fMax);
-
-                if (fMin >= fMax)
-                    return fMax;
-
-                f = d.val + (d.modulate2 * d.modulate1) * 0.75f;
-                while (f > fMax)
-                {
-                    f = fMin + (f - fMax);
-                }
-
-                return f;
-            }
-
-            private float DataDecrease(DataManager d)
-            {
-                float fMin;
-                float fMax;
-                float f;
-
-                GetMinMax(d.point, d.modulate2, out fMin, out fMax);
-                if (fMin >= fMax)
-                    return fMax;
-
-                f = d.val - (d.modulate2 * d.modulate1) * 0.75f;
-                while (f < fMin)
-                {
-                    f = fMax + (f - fMin);
-                }
-
-                return f;
-            }
-
-            private float DataRepetition(DataManager d)
-            {
-                float fMin;
-                float fMax;
-                float f;
-
-                GetMinMax(d.point, d.modulate2, out fMin, out fMax);
-
-                f = d.val + (d.modulate2 * d.modulate1) * 0.75f * d.process;
-                while (f > fMax || f < fMin)
-                {
-                    if (d.process >= 0)
-                        f -= f - fMax;
-                    else
-                        f -= f - fMin;
-                    d.process *= -1;
-                }
-
-                return f;
-            }
-
-            private DataManager DataRandom(DataManager d)
-            {
-                if (--d.process < 0)
-                {
-                    float fMin;
-                    float fMax;
-                    GetMinMax(d.point, d.modulate2, out fMin, out fMax);
-
-                    d.val = UnityEngine.Random.Range(fMin, fMax);
-                    d.process = 20 - (int)(d.modulate1 * 20);
-                }
-                return d;
-            }
-
-            private void GetMinMax(float fp, float fm, out float fMin, out float fMax)
-            {
-                fMin = (1f - fm) * fp;
-                fMax = fMin + fm;
-            }
-
-            /// <summary>
-            /// 얼굴 효과 반영후 얼굴 여부 반환?
-            /// </summary>
-            /// <param name="body"></param>
-            /// <param name="sTag"></param>
-            /// <param name="f"></param>
-            /// <returns></returns>
-            private bool VertexMorph_FromProcItem(TBody body, string sTag, float f)
-            {
-                bool bFace = false;
-                for (int i = 0; i < body.goSlot.Count; i++)
-                {
-                    TMorph morph = body.goSlot[i].morph;
-                    if (morph != null)
-                    {
-                        if (morph.Contains(sTag))
-                        {
-                            if (i == 1)
-                            {
-                                bFace = true;
-                            }
-                            int h = (int)morph.hash[sTag];
-                            ///cm>com
-                            ///不要な処理につきコメントアウト 불필요한 처리에 대해 주석
-                            ///                     morph.BlendValuesCHK[h] = -1f;
-
-                            ///cm>com               morph.BlendValues[h] = f;
-                            morph.SetBlendValues(h, f);
-
-                            morph.FixBlendValues();
-                        }
-                    }
-                }
-                return bFace;
-            }
-
-            //[2018/11/21 @usausaex]キーの並び替えのために変更;
-            private string[] GetAllKeys(TBody body)
-            {
-                List<string> listKeys = new List<string>();
-                for (int i = 0; i < body.goSlot.Count; i++)
-                {
-                    List<string> listSubKeys = new List<string>();
-                    TMorph morph = body.goSlot[i].morph;
-
-                    if (morph != null)
-                    {
-                        foreach (string s in morph.hash.Keys)
-                        {
-                            if (listKeys.Contains(s))
-                            {
-                                continue;
-                            }
-                            if (listSubKeys.Contains(s))
-                            {
-                                continue;
-                            }
-                            if (sIgnoreKeys.Contains(s))
-                            {
-                                continue;
-                            }
-                            listSubKeys.Add(s);
-                        }
-                    }
-                    //アイテムごとのキーlistSubKeysをソートして最終リストlistKeysに追加;
-                    listSubKeys.Sort();
-                    listKeys.AddRange(listSubKeys);
-                }
-
-                return listKeys.ToArray();
-            }
-
-            private bool IsValidKey(TBody body, string sTag)
-            {
-                for (int i = 0; i < body.goSlot.Count; i++)
-                {
-                    TMorph morph = body.goSlot[i].morph;
-                    if (morph != null)
-                    {
-                        if (morph.Contains(sTag))
-                        {
-                            return true;
-                        }
-                    }
-                }
-                return false;
             }
         }
+
+        private float GetGroupVal(int iDm)
+        {
+            if (dm[gm.GetMaster(dm[iDm].group)].modulate2 == 0f)
+                return dm[iDm].point;
+
+            float fMin, fMax, fTime;
+
+            GetMinMax(dm[gm.GetMaster(dm[iDm].group)].point, dm[gm.GetMaster(dm[iDm].group)].modulate2, out fMin, out fMax);
+            fTime = (dm[gm.GetMaster(dm[iDm].group)].val - fMin) / (fMax - fMin);
+
+            if (dm[iDm].groupReverse)
+                fTime = 1f - fTime;
+            GetMinMax(dm[iDm].groupPoint, dm[iDm].groupModulate2, out fMin, out fMax);
+
+            if (dm[gm.GetMaster(dm[iDm].group)].animeType == DataManager.AnimeType.repeat)
+                fTime = Mathf.PingPong(fTime + dm[iDm].groupOffset * dm[gm.GetMaster(dm[iDm].group)].process, 1f);
+            else
+                fTime = Mathf.Repeat(fTime + dm[iDm].groupOffset, 1f);
+
+            return (fTime * dm[iDm].groupModulate2) + fMin;
+        }
+
+        private float DataIncrease(DataManager d)
+        {
+            float fMin;
+            float fMax;
+            float f;
+
+            GetMinMax(d.point, d.modulate2, out fMin, out fMax);
+
+            if (fMin >= fMax)
+                return fMax;
+
+            f = d.val + (d.modulate2 * d.modulate1) * 0.75f;
+            while (f > fMax)
+            {
+                f = fMin + (f - fMax);
+            }
+
+            return f;
+        }
+
+        private float DataDecrease(DataManager d)
+        {
+            float fMin;
+            float fMax;
+            float f;
+
+            GetMinMax(d.point, d.modulate2, out fMin, out fMax);
+            if (fMin >= fMax)
+                return fMax;
+
+            f = d.val - (d.modulate2 * d.modulate1) * 0.75f;
+            while (f < fMin)
+            {
+                f = fMax + (f - fMin);
+            }
+
+            return f;
+        }
+
+        private float DataRepetition(DataManager d)
+        {
+            float fMin;
+            float fMax;
+            float f;
+
+            GetMinMax(d.point, d.modulate2, out fMin, out fMax);
+
+            f = d.val + (d.modulate2 * d.modulate1) * 0.75f * d.process;
+            while (f > fMax || f < fMin)
+            {
+                if (d.process >= 0)
+                    f -= f - fMax;
+                else
+                    f -= f - fMin;
+                d.process *= -1;
+            }
+
+            return f;
+        }
+
+        private DataManager DataRandom(DataManager d)
+        {
+            if (--d.process < 0)
+            {
+                float fMin;
+                float fMax;
+                GetMinMax(d.point, d.modulate2, out fMin, out fMax);
+
+                d.val = UnityEngine.Random.Range(fMin, fMax);
+                d.process = 20 - (int)(d.modulate1 * 20);
+            }
+            return d;
+        }
+
+        private void GetMinMax(float fp, float fm, out float fMin, out float fMax)
+        {
+            fMin = (1f - fm) * fp;
+            fMax = fMin + fm;
+        }
+
+        /// <summary>
+        /// 얼굴 효과 반영후 얼굴 여부 반환?
+        /// </summary>
+        /// <param name="body"></param>
+        /// <param name="sTag"></param>
+        /// <param name="f"></param>
+        /// <returns></returns>
+        private bool VertexMorph_FromProcItem(TBody body, string sTag, float f)
+        {
+            bool bFace = false;
+            for (int i = 0; i < body.goSlot.Count; i++)
+            {
+                TMorph morph = body.goSlot[i].morph;
+                if (morph != null)
+                {
+                    if (morph.Contains(sTag))
+                    {
+                        if (i == 1)
+                        {
+                            bFace = true;
+                        }
+                        int h = (int)morph.hash[sTag];
+                        ///cm>com
+                        ///不要な処理につきコメントアウト 불필요한 처리에 대해 주석
+                        ///                     morph.BlendValuesCHK[h] = -1f;
+
+                        ///cm>com               morph.BlendValues[h] = f;
+                        morph.SetBlendValues(h, f);
+
+                        morph.FixBlendValues();
+                    }
+                }
+            }
+            return bFace;
+        }
+
+        //[2018/11/21 @usausaex]キーの並び替えのために変更;
+        private string[] GetAllKeys(TBody body)
+        {
+            List<string> listKeys = new List<string>();
+            for (int i = 0; i < body.goSlot.Count; i++)
+            {
+                List<string> listSubKeys = new List<string>();
+                TMorph morph = body.goSlot[i].morph;
+
+                if (morph != null)
+                {
+                    foreach (string s in morph.hash.Keys)
+                    {
+                        if (listKeys.Contains(s))
+                        {
+                            continue;
+                        }
+                        if (listSubKeys.Contains(s))
+                        {
+                            continue;
+                        }
+                        if (sIgnoreKeys.Contains(s))
+                        {
+                            continue;
+                        }
+                        listSubKeys.Add(s);
+                    }
+                }
+                //アイテムごとのキーlistSubKeysをソートして最終リストlistKeysに追加;
+                listSubKeys.Sort();
+                listKeys.AddRange(listSubKeys);
+            }
+
+            return listKeys.ToArray();
+        }
+
+        private bool IsValidKey(TBody body, string sTag)
+        {
+            for (int i = 0; i < body.goSlot.Count; i++)
+            {
+                TMorph morph = body.goSlot[i].morph;
+                if (morph != null)
+                {
+                    if (morph.Contains(sTag))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         //
 
         private class NumericInputWindow
