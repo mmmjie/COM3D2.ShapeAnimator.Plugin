@@ -2254,7 +2254,7 @@ namespace COM3D2.ShapeAnimator
                 }
                 return false;
             }
-
+        }
         //
 
         private class NumericInputWindow
